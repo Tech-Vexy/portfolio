@@ -1,0 +1,114 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('img/logo.jpg');
+}
+
+header {
+    /*background-color: #333;*/
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+    text-decoration-color: mediumspringgreen;
+}
+
+nav ul li a {
+    text-decoration: pink;
+    color: #fff;
+}
+
+section {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+h2 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+a {
+    color: #007bff;
+}
+
+/* Portfolio Section */
+.portfolio-item {
+    margin-bottom: 20px;
+}
+
+/* Contact Section */
+.badge-base__link img {
+    width: 40px;
+    margin-right: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+footer p {
+    margin: 5px 0;
+}
+.menu li a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    font-size: 1.5em;
+    transform: inherit;
+    transition: 1s;
+    transition-delay: 0.5s;
+    color: transparent;
+
+}
+.contact {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: darkmagenta;
+}
+/* Centering social icons */
+.social {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Optional: Adjust spacing between social icons */
+.social a {
+    margin: 0 10px; /* Adjust spacing between icons as needed */
+}
+#icon {
+    display: inline-block;
+    width: 50px; /* Adjust the width and height as needed */
+    height: 50px; /* Adjust the width and height as needed */
+    border-radius: 50%; /* Make it circular */
+    background-color: #25D366; /* WhatsApp green color */
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    line-height: 50px; /* Center the icon vertically */
+    cursor: pointer;
+    border: none;
+}
