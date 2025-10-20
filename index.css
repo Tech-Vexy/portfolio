@@ -438,6 +438,9 @@ section:not(.hero) {
 }
 
 .programming-languages h3,
+.frameworks-libraries h3,
+.tools-technologies h3,
+.additional-skills h3,
 .certifications h3 {
     color: var(--primary-color);
     font-size: 1.8rem;
@@ -445,7 +448,10 @@ section:not(.hero) {
 }
 
 /* Certifications */
-.certifications {
+.certifications,
+.frameworks-libraries,
+.tools-technologies,
+.additional-skills {
     margin-top: 2rem;
 }
 
