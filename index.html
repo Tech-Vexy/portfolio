@@ -41,6 +41,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#github-repos">GitHub</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -386,6 +387,22 @@
             </div>
         </section>
 
+        <!-- GitHub Repositories Section -->
+        <section id="github-repos">
+            <div class="container">
+                <h2 class="section-title">GitHub Repositories</h2>
+                <p class="repos-intro">Explore my latest projects and contributions on GitHub</p>
+                <div id="repos-loading" class="repos-loading">
+                    <div class="spinner"></div>
+                    <p>Loading repositories...</p>
+                </div>
+                <div id="repos-grid" class="repos-grid"></div>
+                <div id="repos-error" class="repos-error" style="display: none;">
+                    <p>Unable to load repositories. Please visit my <a href="https://github.com/Tech-Vexy" target="_blank" rel="noopener noreferrer">GitHub profile</a> directly.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="contact">
             <div class="container">
                 <h2 class="section-title">Get in Touch</h2>
@@ -538,6 +555,82 @@
         document.querySelectorAll('section').forEach(section => {
             observer.observe(section);
         });
+
+        // GitHub Repositories API Integration
+        const GITHUB_USERNAME = 'Tech-Vexy';
+        const GITHUB_API_URL = `https://api.github.com/users/${GITHUB_USERNAME}/repos`;
+
+        async function fetchGitHubRepos() {
+            const reposGrid = document.getElementById('repos-grid');
+            const reposLoading = document.getElementById('repos-loading');
+            const reposError = document.getElementById('repos-error');
+
+            try {
+                const response = await fetch(`${GITHUB_API_URL}?sort=updated&per_page=6`);
+                
+                if (!response.ok) {
+                    throw new Error('Failed to fetch repositories');
+                }
+
+                const repos = await response.json();
+                
+                // Hide loading spinner
+                reposLoading.style.display = 'none';
+
+                if (repos.length === 0) {
+                    reposError.style.display = 'block';
+                    return;
+                }
+
+                // Create repository cards
+                repos.forEach(repo => {
+                    const repoCard = document.createElement('div');
+                    repoCard.className = 'repo-card';
+                    
+                    const language = repo.language || 'Code';
+                    const description = repo.description || 'No description available';
+                    const stars = repo.stargazers_count;
+                    const forks = repo.forks_count;
+                    const lastUpdated = new Date(repo.updated_at).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                    });
+
+                    repoCard.innerHTML = `
+                        <div class="repo-header">
+                            <h3>
+                                <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer">
+                                    📁 ${repo.name}
+                                </a>
+                            </h3>
+                            ${language ? `<span class="repo-language">${language}</span>` : ''}
+                        </div>
+                        <p class="repo-description">${description}</p>
+                        <div class="repo-stats">
+                            <span class="repo-stat">⭐ ${stars}</span>
+                            <span class="repo-stat">🔀 ${forks}</span>
+                            <span class="repo-stat">📅 ${lastUpdated}</span>
+                        </div>
+                        <div class="repo-footer">
+                            <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="repo-link">
+                                View Repository →
+                            </a>
+                        </div>
+                    `;
+
+                    reposGrid.appendChild(repoCard);
+                });
+
+            } catch (error) {
+                console.error('Error fetching GitHub repositories:', error);
+                reposLoading.style.display = 'none';
+                reposError.style.display = 'block';
+            }
+        }
+
+        // Fetch repositories when page loads
+        fetchGitHubRepos();
     </script>
 </body>
 </html>
