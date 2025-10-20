@@ -468,7 +468,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <p>&copy; 2024 Evelia Veldrine Kaharwa. All Rights Reserved.</p>
+                <p>&copy; <span id="current-year"></span> Evelia Veldrine Kaharwa. All Rights Reserved.</p>
                 <p class="footer-tagline">Built with 💙 and ☕</p>
             </div>
             <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">↑</button>
@@ -476,6 +476,9 @@
     </footer>
 
     <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
